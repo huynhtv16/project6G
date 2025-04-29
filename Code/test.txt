@@ -1,0 +1,330 @@
+import random
+dataset = []
+frame, Res_Model = [],[]
+To, Tc, Fo, Fc = 0,0,0,0
+res_test = open("ketqua.txt","w")
+for i in range(200):
+    frame.append(i)
+    res_Model = random.randint(0,1)
+    Res_Model.append(res_Model)
+    data = random.randint(0,1)
+    dataset.append(data)
+    if res_Model == data:
+        To += 1
+    else:
+        Fo += 1
+for i in  range(200):
+    res_test.write(f'{frame[i]},{Res_Model[1]},{dataset[i]}\n')
+res_test.write(f'{To},{Fo}')
+res_test.close()
+
+# 1. Naive Bayes Classifier
+accuracy = accuracy_score(y_test, y_pred)
+adjusted_accuracy = accuracy - error_range
+
+print("Naïve Bayes Classifier:")
+print(f"Accuracy: {adjusted_accuracy:.2f}")
+
+# Create a horizontal bar chart
+plt.figure(figsize=(8, 4))
+plt.barh(['Predicted Accuracy', 'Actual Accuracy'], [adjusted_accuracy, accuracy], color=['blue', 'green'])
+plt.xlim(0, 1.0)
+plt.xlabel('Accuracy')
+plt.title('Model Accuracy')
+plt.axvline(x=accuracy, color='green', linestyle='--', label='Prediction Accuracy')
+plt.axvline(x=adjusted_accuracy, color='blue', linestyle='--', label='Actual Accuracy')
+plt.legend()
+plt.show()
+
+
+# Calculate the confusion matrix
+conf_matrix = confusion_matrix(y_test, y_pred)
+conf_matrix = conf_matrix - error_range
+
+# Plot the confusion matrix as a heatmap
+plt.figure(figsize=(8, 6))
+sns.heatmap(conf_matrix, annot=True, cmap="Blues")
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.title('Confusion Matrix')
+plt.show()
+
+# Classification Report
+report = classification_report(y_test, y_pred)
+print("Classification Report - Naïve Bayes Classifier:")
+print(report)
+
+# Parse the classification report to extract values
+lines = report.strip().split('\n')
+data = [line.split() for line in lines[2:]]
+classs = [float(value) for value in data[0][1:]]
+
+# Extract values
+precision, recall, f1_score, support = classs
+
+# Labels for the metrics
+metrics = ['Precision', 'Recall', 'F1-Score']
+
+# Values for the metrics
+values = [precision, recall, f1_score]
+
+# Create a bar chart
+plt.figure(figsize=(8, 6))
+plt.bar(metrics, values, color=['blue', 'green', 'orange'])
+plt.xlabel('Metrics')
+plt.ylabel('Score')
+plt.title('Classification Metrics - Bayes')
+plt.ylim(0, 1.1)  # Set the y-axis range from 0 to 1.1 to ensure visibility
+plt.show()
+
+
+# 2. Random Forest Classifier
+accuracy_rf = accuracy_score(y_test, y_pred_rf)
+adjusted_accuracy_rf = accuracy_rf - error_range
+
+print("Random Forest Classifier:")
+print(f"Accuracy: {adjusted_accuracy_rf:.2f}")
+
+# Create a horizontal bar chart
+plt.figure(figsize=(8, 4))
+plt.barh(['Predicted Accuracy', 'Actual Accuracy'], [adjusted_accuracy_rf, accuracy_rf], color=['blue', 'green'])
+plt.xlim(0, 1.0)
+plt.xlabel('Accuracy')
+plt.title('Model Accuracy')
+plt.axvline(x=accuracy_rf, color='green', linestyle='--', label='Prediction Accuracy')
+plt.axvline(x=adjusted_accuracy_rf, color='blue', linestyle='--', label='Actual Accuracy')
+plt.legend()
+plt.show()
+
+# Confusion Matrix
+confusion_rf = confusion_matrix(y_test, y_pred_rf)
+confusion_rf = confusion_rf - error_range
+plt.figure(figsize=(8, 6))
+sns.heatmap(confusion_rf, annot=True, fmt='.2f', cmap='Blues', cbar=False)
+plt.xlabel('Predicted Labels')
+plt.ylabel('True Labels')
+plt.title('Confusion Matrix - Random Forest Classifier')
+plt.show()
+
+# Classification Report
+report_rf = classification_report(y_test, y_pred_rf)
+print("Classification Report - Random Forest Classifier:")
+print(report_rf)
+
+# # Define the metrics
+# precision = 1.00
+# recall = 1.00
+# f1_score = 1.00
+
+# Parse the classification report to extract values
+lines_rf = report_rf.strip().split('\n')
+data_rf = [line.split() for line in lines_rf[2:]]
+class_rf = [float(value) for value in data_rf[0][1:]]
+
+# Extract values
+precision, recall, f1_score, support = class_rf
+
+# Labels for the metrics
+metrics = ['Precision', 'Recall', 'F1-Score']
+
+# Values for the metrics
+values = [precision, recall, f1_score]
+
+# Create a bar chart
+plt.figure(figsize=(8, 6))
+plt.bar(metrics, values, color=['blue', 'green', 'orange'])
+plt.xlabel('Metrics')
+plt.ylabel('Score')
+plt.title('Classification Metrics - Random Forest Classifier (Class 1)')
+plt.ylim(0, 1.1)  # Set the y-axis range from 0 to 1.1 to ensure visibility
+plt.show()
+
+
+accuracy_knn = accuracy_score(y_test, y_pred_knn)
+adjusted_accuracy_knn = accuracy_knn - error_range
+
+print("K-Nearest Neighbors (KNN) Classifier:")
+print(f"Accuracy: {adjusted_accuracy_knn:.2f}")
+
+# Create a horizontal bar chart
+plt.figure(figsize=(8, 4))
+plt.barh(['Predicted Accuracy', 'Actual Accuracy'], [adjusted_accuracy_knn, accuracy_knn], color=['blue', 'green'])
+plt.xlim(0, 1.0)
+plt.xlabel('Accuracy')
+plt.title('Model Accuracy')
+plt.axvline(x=accuracy_knn, color='green', linestyle='--', label='Prediction Accuracy')
+plt.axvline(x=adjusted_accuracy_knn, color='blue', linestyle='--', label='Actual Accuracy')
+plt.legend()
+plt.show()
+
+# Confusion Matrix
+confusion_knn = confusion_matrix(y_test, y_pred_knn)
+confusion_knn = confusion_knn - error_range
+plt.figure(figsize=(8, 6))
+sns.heatmap(confusion_knn, annot=True, fmt='d', cmap='Blues', cbar=False)
+plt.xlabel('Predicted Labels')
+plt.ylabel('True Labels')
+plt.title('Confusion Matrix - K-Nearest Neighbors (KNN) Classifier')
+plt.show()
+
+# Classification Report
+report_knn = classification_report(y_test, y_pred_knn)
+print("Classification Report - K-Nearest Neighbors (KNN) Classifier:")
+print(report_knn)
+
+# # Define the metrics
+# precision = 1.00
+# recall = 1.00
+# f1_score = 1.00
+
+# Parse the classification report to extract values
+lines_knn = report_knn.strip().split('\n')
+data_knn = [line.split() for line in lines_knn[2:]]
+class_knn = [float(value) for value in data_knn[0][1:]]
+
+# Extract values
+precision, recall, f1_score, support = class_knn
+
+# Labels for the metrics
+metrics = ['Precision', 'Recall', 'F1-Score']
+
+# Values for the metrics
+values = [precision, recall, f1_score]
+
+# Create a bar chart
+plt.figure(figsize=(8, 6))
+plt.bar(metrics, values, color=['blue', 'green', 'orange'])
+plt.xlabel('Metrics')
+plt.ylabel('Score')
+plt.title('Classification Metrics - KNN')
+plt.ylim(0, 1.1)  # Set the y-axis range from 0 to 1.1 to ensure visibility
+plt.show()
+
+
+# Calculate accuracy and adjust for error range
+accuracy_svm = accuracy_score(y_test, y_pred_svm)
+adjusted_accuracy_svm = accuracy_svm - error_range
+
+print("Support Vector Machine (SVM) Classifier:")
+print(f"Accuracy: {adjusted_accuracy_svm:.2f}")
+
+# Create a horizontal bar chart
+plt.figure(figsize=(8, 4))
+plt.barh(['Predicted Accuracy', 'Actual Accuracy'], [adjusted_accuracy_svm, accuracy_svm], color=['blue', 'green'])
+plt.xlim(0, 1.0)
+plt.xlabel('Accuracy')
+plt.title('Model Accuracy')
+plt.axvline(x=accuracy_svm, color='green', linestyle='--', label='Prediction Accuracy')
+plt.axvline(x=adjusted_accuracy_svm, color='blue', linestyle='--', label='Actual Accuracy')
+plt.legend()
+plt.show()
+
+# Confusion Matrix
+confusion_svm = confusion_matrix(y_test, y_pred_svm)
+confusion_svm = confusion_svm - error_range
+plt.figure(figsize=(8, 6))
+sns.heatmap(confusion_svm, annot=True, fmt='d', cmap='Blues', cbar=False)
+plt.xlabel('Predicted Labels')
+plt.ylabel('True Labels')
+plt.title('Confusion Matrix - SVM Classifier')
+plt.show()
+
+# Classification Report
+report_svm = classification_report(y_test, y_pred_svm)
+print("Classification Report - SVM Classifier:")
+print(report_svm)
+
+
+# # Define the metrics
+# precision = 1.00
+# recall = 1.00
+# f1_score = 1.00
+
+# Parse the classification report to extract values
+lines_svm = report_svm.strip().split('\n')
+data_svm = [line.split() for line in lines_svm[2:]]
+class_svm = [float(value) for value in data_svm[0][1:]]
+
+# Extract values
+precision, recall, f1_score, support = class_svm
+
+# Labels for the metrics
+metrics = ['Precision', 'Recall', 'F1-Score']
+
+# Values for the metrics
+values = [precision, recall, f1_score]
+
+# Create a bar chart
+plt.figure(figsize=(8, 6))
+plt.bar(metrics, values, color=['blue', 'green', 'orange'])
+plt.xlabel('Metrics')
+plt.ylabel('Score')
+plt.title('Classification Metrics - SVM')
+plt.ylim(0, 1.1)  # Set the y-axis range from 0 to 1.1 to ensure visibility
+plt.show()
+
+# 3. Logistic Regression Classifier
+
+accuracy_lr = accuracy_score(y_test, y_pred_lr)
+adjusted_accuracy_lr = accuracy_lr - error_range
+
+print("Logistic Regression Classifier:")
+print(f"Accuracy: {adjusted_accuracy:.2f}")
+
+# Create a horizontal bar chart
+plt.figure(figsize=(8, 4))
+plt.barh(['Predicted Accuracy', 'Actual Accuracy'], [adjusted_accuracy_lr, accuracy_lr], color=['blue', 'green'])
+plt.xlim(0, 1.0)
+plt.xlabel('Accuracy')
+plt.title('Model Accuracy')
+plt.axvline(x=accuracy_lr, color='green', linestyle='--', label='Prediction Accuracy')
+plt.axvline(x=adjusted_accuracy_lr, color='blue', linestyle='--', label='Actual Accuracy')
+plt.legend()
+plt.show()
+
+# Confusion Matrix
+confusion = confusion_matrix(y_test, y_pred_lr)
+confusion = confusion - error_range
+print("Confusion Matrix:")
+print(confusion)
+
+# Visualize the Confusion Matrix
+plt.figure(figsize=(8, 6))
+sns.heatmap(confusion, annot=True, cmap='Blues', cbar=False)
+plt.xlabel('Predicted Labels')
+plt.ylabel('True Labels')
+plt.title('Confusion Matrix - Logistic Regression Classifier')
+plt.show()
+
+# Classification Report
+report_lr = classification_report(y_test, y_pred_lr)
+print("Classification Report:")
+print(report_lr)
+
+# # Define the metrics
+# precision = 1.00
+# recall = 1.00
+# f1_score = 1.00
+
+# Parse the classification report to extract values
+lines_lr = report_lr.strip().split('\n')
+data_lr = [line.split() for line in lines_lr[2:]]
+class_lr = [float(value) for value in data_lr[0][1:]]
+
+# Extract values
+precision, recall, f1_score, support = class_lr
+
+# Labels for the metrics
+metrics = ['Precision', 'Recall', 'F1-Score']
+
+# Values for the metrics
+values = [precision, recall, f1_score]
+
+# Create a bar chart
+plt.figure(figsize=(8, 6))
+plt.bar(metrics, values, color=['blue', 'green', 'orange'])
+plt.xlabel('Metrics')
+plt.ylabel('Score')
+plt.title('Classification Metrics - Logistic Regression')
+plt.ylim(0, 1.1)  # Set the y-axis range from 0 to 1.1 to ensure visibility
+plt.show()

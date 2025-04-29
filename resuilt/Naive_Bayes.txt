@@ -1,0 +1,13 @@
+Naive_Bayes Classifier:
+Accuracy: 0.74
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.99      0.55      0.70     23172
+           1       0.63      0.99      0.77     18336
+
+    accuracy                           0.74     41508
+   macro avg       0.81      0.77      0.74     41508
+weighted avg       0.83      0.74      0.73     41508
+
