@@ -20,3 +20,40 @@ Dự án mô phỏng các cuộc tấn công từ chối dịch vụ phân tán 
 - **Hệ thống & log:** multiprocessing, threading, logging, signal
 
 ## 📂 Cấu trúc thư mục
+```plaintext
+📦 DDoS-Detection-Simulator
+│
+├── result/ # Tự động tạo ra khi chạy mô phỏng
+│ ├── attacker.log # Ghi log gói tin do attacker tạo ra
+│ └── server.log # Ghi log gói tin server nhận được
+│
+├── images/ # Thư mục chứa các biểu đồ đã vẽ
+│ ├── CNN_confusion_matrix.png
+│ ├── RNN_confusion_matrix.png
+│ └── pps_cpu_ram_over_time.png (tự sinh)
+│
+├── Results/ # Đánh giá mô hình
+│ ├── CNN.txt # Báo cáo mô hình CNN
+│ └── RNN.txt # Báo cáo mô hình RNN
+│
+├── packets_over_time.png # Biểu đồ số lượng packet gửi / nhận
+├── cnn_ddos_classifier.pth # Trọng số mô hình CNN đã huấn luyện
+├── rnn_ddos_classifier.pth # Trọng số mô hình RNN đã huấn luyện
+│
+├── simulate_ddos.py # File mô phỏng tấn công và log hệ thống
+├── train_and_detect.py # File huấn luyện và đánh giá mô hình
+└── README.md # Mô tả dự án (file này)
+```
+
+## 📸 Hình ảnh minh họa
+<img width="1256" height="750" alt="image" src="https://github.com/user-attachments/assets/84251fed-6018-4a12-82d2-c9ecde9f221e" />
+<img width="880" height="528" alt="image" src="https://github.com/user-attachments/assets/4bfbc647-4898-43e5-889f-8aac5b6d74df" />
+<img width="913" height="753" alt="image" src="https://github.com/user-attachments/assets/01df3022-d9a5-4940-a666-7262be850d27" />
+
+
+📚 Ghi chú
+Dự án không sử dụng cơ sở dữ liệu mà phân tích trực tiếp từ file log (server.log)
+
+Có thể mở rộng lưu log vào SQLite hoặc MongoDB nếu cần
+
+Phù hợp làm đề tài học thuật hoặc nghiên cứu về phát hiện tấn công mạng
