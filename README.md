@@ -25,7 +25,11 @@ Dự án mô phỏng các cuộc tấn công từ chối dịch vụ phân tán 
 │
 ├── code/ # Tự động tạo ra khi chạy mô phỏng
 │ ├── DDoS_attacker.py # bắt đầu tấn công gửi các file log đến server
-│ └── CNN_RNN.py # Bắt đầu xử lý dữ liệu từ file log huấn luyện model 
+│ └── CNN_RNN.py # Bắt đầu xử lý dữ liệu từ file log huấn luyện model
+|
+├── result/ # Đánh giá mô hình
+│ ├── attacker.log # các gói tin tấn công 
+│ └── server.log # các gói tin sau khi được server xử lý , ghi lại quá trình sử dụng ram , cpu cho mỗi batch 
 │
 ├── images/ # Thư mục chứa các biểu đồ đã vẽ
 │ ├── CNN_confusion_matrix.png
