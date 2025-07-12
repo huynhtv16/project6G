@@ -24,8 +24,8 @@ Dự án mô phỏng các cuộc tấn công từ chối dịch vụ phân tán 
 📦 DDoS-Detection-Simulator
 │
 ├── code/ # Tự động tạo ra khi chạy mô phỏng
-│ ├── DDoS_attacker.log # bắt đầu tấn công gửi các file log đến server
-│ └── server.log # Ghi log gói tin server nhận được
+│ ├── DDoS_attacker.py # bắt đầu tấn công gửi các file log đến server
+│ └── CNN_RNN.py # Bắt đầu xử lý dữ liệu từ file log huấn luyện model 
 │
 ├── images/ # Thư mục chứa các biểu đồ đã vẽ
 │ ├── CNN_confusion_matrix.png
