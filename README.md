@@ -23,8 +23,8 @@ Dự án mô phỏng các cuộc tấn công từ chối dịch vụ phân tán 
 ```plaintext
 📦 DDoS-Detection-Simulator
 │
-├── result/ # Tự động tạo ra khi chạy mô phỏng
-│ ├── attacker.log # Ghi log gói tin do attacker tạo ra
+├── code/ # Tự động tạo ra khi chạy mô phỏng
+│ ├── DDoS_attacker.log # bắt đầu tấn công gửi các file log đến server
 │ └── server.log # Ghi log gói tin server nhận được
 │
 ├── images/ # Thư mục chứa các biểu đồ đã vẽ
